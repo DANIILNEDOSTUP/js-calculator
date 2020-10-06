@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background-color: #151515;
+}
+
+.calculator {
+  width: min(65ch, 100%);
+  padding: 1.5rem;
+  background-color: #222;
+}
+
+.top-description {
+  padding-bottom: 0.8rem;
+  font-size: 0.85em;
+  color: #eee;
+}
+
+.calculator-screen {
+  margin-bottom: 1.5rem;
+  border-top: 2px solid #0d7000;
+  padding: 3.5rem 0.7rem 0.5rem 2rem;
+  background-color: #353535;
+  font-size: 3.5em;
+  font-weight: 300;
+  text-align: right;
+  word-wrap: break-word;
+  color: #eee;
+}
+
+.calculator-body {
+  display: grid;
+  grid-gap: 0.2rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-auto-rows: 1fr;
+}
+
+#clear,
+#zero {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.calc-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: filter 0.15s ease-out;
+  padding: 0.4rem;
+  background-color: #353535;
+  cursor: pointer;
+  font-size: 2.5em;
+  color: #eee;
+}
+
+.calc-btn:hover {
+  filter: brightness(1.3);
+}
+
+.special-btn {
+  background-color: #444;
+  font-size: 1.5em;
+  font-weight: 300;
+}
+
+#equal {
+  background-color: #0d7000;
+}
