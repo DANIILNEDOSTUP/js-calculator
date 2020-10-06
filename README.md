@@ -17,7 +17,6 @@ _In progress_
 * JavaScript ES6
 
 ## Features
-List of features ready and TODOs for future development:
 * Responsive static design
 
 To-do list:
@@ -27,7 +26,7 @@ To-do list:
 * Keyboard support
 
 ## Credits
-This project is a assignment from [TheOdinProject](https://www.theodinproject.com). Design was inspired by [Windows 10 default calculator](https://github.com/Microsoft/calculator). 
+This project is an assignment from [TheOdinProject](https://www.theodinproject.com). Design was inspired by [Windows Calculator app](https://github.com/Microsoft/calculator). 
 
 ## Contact
 Created by [@AlejandroVela](https://github.com/AlejandroVela-Dev) - feel free to contact me!
