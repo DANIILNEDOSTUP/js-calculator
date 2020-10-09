@@ -13,7 +13,7 @@
 
 ## Live preview
 
-_In progress_
+https://alejandrovela-dev.github.io/js-calculator/
 
 ## Screenshots
 
@@ -31,9 +31,6 @@ _In progress_
 - Floating point numbers support
 - Backspace button
 - Responsive design
-
-To-do list:
-
 - Keyboard support
 
 ## Credits
