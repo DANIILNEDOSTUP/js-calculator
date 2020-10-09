@@ -34,7 +34,7 @@ body {
 }
 
 .calc-display {
-  width: 16ch;
+  width: 12ch;
   margin-bottom: 1.5rem;
   border-top: 2px solid #0d7000;
   padding: 3.5rem 0.7rem 0.5rem 2rem;
@@ -81,7 +81,7 @@ body {
 .dot,
 .equal {
   background-color: #444;
-  font-size: 1.5em;
+  font-size: 1.4em;
   font-weight: 300;
 }
 
