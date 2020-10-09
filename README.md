@@ -17,7 +17,7 @@ https://alejandrovela-dev.github.io/js-calculator/
 
 ## Screenshots
 
-![Example screenshot](img/screenshot.png)
+![JS Calculator](img/js-calculator.png)
 
 ## Technologies
 
