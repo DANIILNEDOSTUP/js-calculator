@@ -28,13 +28,12 @@ _In progress_
 ## Features
 
 - Basic math operations (addition, subtraction, multiplication and division)
+- Floating point numbers support
 - Backspace button
 - Responsive design
 
 To-do list:
 
-- Input functions refactor
-- Floating point numbers support
 - Keyboard support
 
 ## Credits
