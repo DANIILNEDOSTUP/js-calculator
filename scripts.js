@@ -1,7 +1,7 @@
 /* Math operations */
 let equation = '0';
-let previousEquation;
-let previousOperator;
+let previousEquation = '0';
+let previousOperator = '';
 
 const add = (a, b) => +a + +b;
 const substract = (a, b) => +a - +b;
@@ -46,69 +46,73 @@ const removeActiveOperatorStyle = () => {
 
 /* Equation complementary functions */
 const getLastEquationChar = () => [...equation].pop(); // Returns last character from the actual equation
-const isPreviousCharOperator = () => isNaN(getLastEquationChar());
 const removeLastEquationChar = () => Number(equation.slice(0, -1));
+const isPreviousCharOperator = () => isNaN(getLastEquationChar());
+const isPreviousCharDot = () => getLastEquationChar() == '.';
 
 const resetCache = () => {
-  previousEquation = undefined;
-  previousOperator = undefined;
+  previousEquation = '0';
+  previousOperator = '';
 };
 
 const clearEquation = () => {
-  removeActiveOperatorStyle();
   resetCache();
   equation = '0';
   updateDisplay();
+  removeActiveOperatorStyle();
 };
 
 const backspaceEquation = () => {
-  if (isNaN(getLastEquationChar())) removeActiveOperatorStyle(); // Removes button styling if last character in equation is an operator
-  equation = equation.length > 1 ? equation.slice(0, -1) : '0'; // Removes previous character unless there's only 1; in which case assigns 0
+  if (isNaN(getLastEquationChar())) removeActiveOperatorStyle(); // Removes button styling if last character is an operator (undo operator effect)
+  equation = equation.length > 1 ? equation.slice(0, -1) : '0'; // Assigns '0' when last character is removed
   updateDisplay();
 };
 
 /* Equation inputs functions */
 const addNumber = (num) => {
-  if (isPreviousCharOperator()) {
+  if (isPreviousCharOperator() && !isPreviousCharDot()) {
     // If adding numbers after operator, store previous data, re-initialize equation
     previousOperator = getLastEquationChar();
     previousEquation = removeLastEquationChar();
     equation = '0';
   }
-  equation == '0' ? (equation = num) : (equation += num); // If equation has been initialized, replace 0 for 'num'; else concatenates number
+  equation == '0' ? (equation = num) : (equation += num);
   updateDisplay();
 };
 
 const addOperator = (operatorKey) => {
+  const actualOperator = operatorKey.textContent;
+  const lastEquationChar = getLastEquationChar();
+  if (isPreviousCharOperator()) {
+    // If two operators added in a row, remove previous one (needed for solving evaluation or replacing)
+    equation = removeLastEquationChar();
+    if (lastEquationChar === actualOperator)
+      solveEquation(actualOperator, equation);
+  } else if (previousOperator)
+    // If operator added when there's already one in the equation, solve it first
+    solveEquation(previousOperator, previousEquation);
+
   removeActiveOperatorStyle();
   addActiveOperatorStyle(operatorKey);
-  const actualOperator = operatorKey.textContent;
-
-  const lastEquationChar = getLastEquationChar();
-  if (isPreviousCharOperator()) {
-    equation = removeLastEquationChar();
-    if (actualOperator == lastEquationChar)
-      equation = operate(actualOperator, equation, previousEquation);
-  } else if (previousEquation) {
-    equation = operate(previousOperator, previousEquation, equation);
-  }
-  resetCache();
-  updateDisplay();
-  equation += actualOperator;
+  equation += actualOperator; // Add (when equation solved) or replace operator
 };
 
-const resolveEquation = () => {
-  removeActiveOperatorStyle();
+const addDot = () => {
+  if (!equation.includes('.')) equation += '.';
+  updateDisplay();
+};
 
-  const lastEquationChar = getLastEquationChar();
-  if (isPreviousCharOperator()) {
-    equation = removeLastEquationChar();
-    equation = operate(lastEquationChar, equation, previousEquation);
-  } else if (previousEquation) {
-    equation = operate(previousOperator, previousEquation, equation);
+const solveEquation = (
+  operator = previousOperator,
+  actualEquation = previousEquation
+) => {
+  if (operator) {
+    equation = operate(operator, actualEquation, equation);
+    updateDisplay();
+    if (equation === 'Err') equation = '0'; // Reset equation when operate returns 'Err'
+    removeActiveOperatorStyle();
   }
   resetCache();
-  updateDisplay();
 };
 
 /* Key handlers initialization */
@@ -126,4 +130,5 @@ operatorKeys.forEach((operatorKey) => {
 
 clearKey.addEventListener('click', clearEquation);
 backspaceKey.addEventListener('click', backspaceEquation);
-equalKey.addEventListener('click', resolveEquation);
+equalKey.addEventListener('click', () => solveEquation());
+dotKey.addEventListener('click', addDot);
