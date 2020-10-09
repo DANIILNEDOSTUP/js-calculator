@@ -115,7 +115,7 @@ const solveEquation = (
   resetCache();
 };
 
-/* Key handlers initialization */
+/* Key-click handlers */
 numKeys.forEach((numKey) => {
   numKey.addEventListener('click', (e) => {
     addNumber(e.target.textContent);
@@ -132,3 +132,67 @@ clearKey.addEventListener('click', clearEquation);
 backspaceKey.addEventListener('click', backspaceEquation);
 equalKey.addEventListener('click', () => solveEquation());
 dotKey.addEventListener('click', addDot);
+
+/* Keyboard-press handlers */
+
+document.addEventListener('keydown', function (e) {
+  const numRegExp = /^[0-9]*$/;
+  const symbol = e.key;
+  const keyboardKeySymbols = [
+    '0',
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '0',
+    '+',
+    '-',
+    '/',
+    '*',
+    '.',
+    '=',
+    'Enter',
+    'Backspace',
+    'Delete',
+  ];
+
+  if (keyboardKeySymbols.includes(symbol)) {
+    e.preventDefault;
+    if (numRegExp.test(symbol)) {
+      addNumber(symbol);
+    } else {
+      switch (symbol) {
+        case '+':
+          addOperator(document.querySelector('.add'));
+          break;
+        case '-':
+          addOperator(document.querySelector('.substract'));
+          break;
+        case '*':
+          addOperator(document.querySelector('.multiply'));
+          break;
+        case '/':
+          addOperator(document.querySelector('.divide'));
+          break;
+        case '.':
+          addDot();
+          break;
+        case 'Backspace':
+          backspaceEquation();
+          break;
+        case 'Delete':
+          clearEquation();
+          break;
+        case 'Enter':
+        case '=':
+          solveEquation();
+          break;
+      }
+    }
+  }
+});
