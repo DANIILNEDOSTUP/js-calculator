@@ -63,7 +63,7 @@ const clearEquation = () => {
 };
 
 const backspaceEquation = () => {
-  if (isNaN(getLastEquationChar())) removeActiveOperatorStyle(); // Removes button styling if last character is an operator (undo operator effect)
+  if (isPreviousCharOperator()) removeActiveOperatorStyle(); // Removes button styling if last character is an operator (undo operator effect)
   equation = equation.length > 1 ? equation.slice(0, -1) : '0'; // Assigns '0' when last character is removed
   updateDisplay();
 };
