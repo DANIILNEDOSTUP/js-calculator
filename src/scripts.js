@@ -3,11 +3,7 @@ let equation = '0';
 let previousEquation = '0';
 let previousOperator = '';
 
-const add = (a, b) => +a + +b;
-const substract = (a, b) => +a - +b;
-const multiply = (a, b) => a * b;
-const divide = (a, b) => (b == '0' ? 'Err' : roundResult(a / b));
-const roundResult = (n) => Math.round((n + Number.EPSILON) * 100) / 100; // Rounds n to 2 decimal places
+const {add, substract, multiply, divide, roundResult} = require('./arithmetics');
 
 const operate = (operator, a, b = a) => {
   // Returns strings for easier operators evaluation
