@@ -30,8 +30,8 @@ jobs:
     - run: npm test
     - run: ls -la ./src
     - run: |
-        cp src/index.html ./
-        cp src/style.css ./
-        cp src/arithmetics.js ./
-        сp dist/scripts.js ./
+        cp src/index.html .
+        cp src/style.css .
+        cp src/arithmetics.js .
+        сp dist/scripts.js .
     - run: ls -la 
