@@ -33,5 +33,6 @@ jobs:
         cp ./src/index.html ./
         cp ./src/style.css ./
         cp ./src/arithmetics.js ./
+        cp ./dist/scripts.js ./
         
     - run: ls -la 
