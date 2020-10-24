@@ -1,5 +1,6 @@
 # JavaScript Calculator
-   <img src="https://github.com/DANIILNEDOSTUP/js-calcutator/workflows/CI/badge.svg?branch=main"><br>
+
+   <img alt="build" src="https://github.com/DANIILNEDOSTUP/js-calcutator/workflows/CI/badge.svg">
 
 > Simple calculator created for TheOdinProject curriculum.
 
