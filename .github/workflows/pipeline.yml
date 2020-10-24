@@ -36,3 +36,15 @@ jobs:
         cp ./dist/scripts.js ./
         
     - run: ls -la 
+      
+    - name: Build Docker image
+      run : docker build -t webapp . 
+    
+    - name: Check image
+      run : docker images
+    
+    - name: Push in DockerHub
+      run : |
+            docker login -u ${{ secrets.DOCKERHUB_LOGIN }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
+            docker tag webapp daniilnedostup/webapp:latest
+            docker push daniilnedostup/webapp:latest
