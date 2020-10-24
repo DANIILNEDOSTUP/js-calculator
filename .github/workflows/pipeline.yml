@@ -28,8 +28,9 @@ jobs:
     - run: npm run build
     - run: ls -la
     - run: npm test
+    - run: ls -la ./src
     - run: |
-        cp /src/index.html dist/
-        cp /src/style.css dist/
-        cp /src/arithmetics.js dist/
+        cp ./src/index.html dist/
+        cp ./src/style.css dist/
+        cp ./src/arithmetics.js dist/
     - run: ls -la dist
