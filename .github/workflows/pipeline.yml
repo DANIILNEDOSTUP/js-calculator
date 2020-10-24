@@ -34,4 +34,4 @@ jobs:
         cp ./src/style.css ./
         cp ./src/arithmetics.js ./
         сp ./dist/scripts.js ./
-    - run: ls -la dist
+    - run: ls -la 
