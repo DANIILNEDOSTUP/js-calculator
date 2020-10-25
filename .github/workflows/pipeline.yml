@@ -67,4 +67,12 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: eu-central-1
      
+    - name: Deploy
+      run : |
+            zip -r deployment-${{ github.sha }}.zip .
+            aws s3 cp deployment-${{ github.sha }}.zip s3://github-webapp-actions
+            aws elasticbeanstalk create-application-version --application-name js-app \
+                --version-label ${{ github.sha }} --source-bundle S3Bucket="github-webapp-actions",S3Key="deployment-${{ github.sha }}.zip"
+            aws elasticbeanstalk update-environment --application-name js-app \
+                --environment-name stage --version-label ${{ github.sha }}
      
