@@ -44,6 +44,7 @@ jobs:
         cp ./src/style.css ./
         cp ./src/arithmetics.js ./
         cp ./dist/scripts.js ./
+        rm -R ./node_modules
         
     - run: ls -la 
       
