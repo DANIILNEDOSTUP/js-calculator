@@ -31,12 +31,8 @@ jobs:
     - name: Build 
       run: npm run build
     
-    - run: ls -la
-    
     - name: Tests
-      run: npm test
-    
-    - run: ls -la ./src
+      run: npm test  
     
     - name: Copy important files
       run: |
@@ -46,8 +42,6 @@ jobs:
         cp ./dist/scripts.js ./
         rm -R ./node_modules
         
-    - run: ls -la 
-      
     - name: Build Docker image
       run : docker build -t daniilnedostup/webapp:latest . 
     
@@ -58,8 +52,8 @@ jobs:
       run : |
             docker login -u ${{ secrets.DOCKERHUB_LOGIN }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
             docker tag daniilnedostup/webapp:latest daniilnedostup/webapp:${{ github.sha }}
-            docker push daniilnedostup/webapp:latest
             docker push daniilnedostup/webapp:${{ github.sha }}
+            docker push daniilnedostup/webapp:latest
      
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -76,4 +70,4 @@ jobs:
                 --version-label ${{ github.sha }} --source-bundle S3Bucket="github-webapp-actions",S3Key="deployment-${{ github.sha }}.zip"
             aws elasticbeanstalk update-environment --application-name js-app \
                 --environment-name stage --version-label ${{ github.sha }}
-     
+   
