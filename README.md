@@ -2,7 +2,6 @@
 
  <img alt="build" src="https://github.com/DANIILNEDOSTUP/js-calculator/workflows/CI/badge.svg">
 
-> Simple calculator created for TheOdinProject curriculum.
 
 ## Table of contents
 
