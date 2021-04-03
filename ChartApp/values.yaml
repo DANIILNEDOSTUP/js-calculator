@@ -1,3 +1,4 @@
-image:
-  repository: daniilnedostup/webapp
-  tag: latest
+# image:
+#   repository: daniilnedostup/webapp
+#   tag: latest
+image: daniilnedostup/webapp:latest
