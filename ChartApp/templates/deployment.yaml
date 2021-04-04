@@ -5,8 +5,8 @@ metadata:
   labels:
     app : {{ .Release.Name }}-deployment
 spec:
-  #replicas: {{ .Values.replicaCount }}
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
+  #replicas: 1
   selector:
     matchLabels:
       project: {{ .Release.Name }}
